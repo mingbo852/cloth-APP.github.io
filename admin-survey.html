@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>問卷調查管理</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .stat-card h3 {
+            margin: 0 0 10px 0;
+            color: #666;
+        }
+        .survey-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .survey-list th, .survey-list td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .survey-list th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .export-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .export-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>問卷調查管理</h1>
+        
+        <button class="export-btn" onclick="exportToCSV()">導出數據</button>
+
+        <div class="stats-container" id="statsContainer">
+            <!-- 統計數據將在這裡動態生成 -->
+        </div>
+
+        <table class="survey-list">
+            <thead>
+                <tr>
+                    <th>提交時間</th>
+                    <th>角色</th>
+                    <th>店鋪數量</th>
+                    <th>員工數量</th>
+                    <th>月營業額</th>
+                    <th>詳細信息</th>
+                </tr>
+            </thead>
+            <tbody id="surveyList">
+                <!-- 問卷數據將在這裡動態生成 -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 獲取問卷統計數據
+        async function fetchStats() {
+            try {
+                const response = await fetch('http://localhost:3000/api/surveys/stats');
+                const data = await response.json();
+                if (data.status === 'success') {
+                    displayStats(data.data);
+                }
+            } catch (error) {
+                console.error('獲取統計數據失敗:', error);
+            }
+        }
+
+        // 顯示統計數據
+        function displayStats(stats) {
+            const container = document.getElementById('statsContainer');
+            container.innerHTML = '';
+
+            stats.forEach(stat => {
+                const card = document.createElement('div');
+                card.className = 'stat-card';
+                card.innerHTML = `
+                    <h3>${stat._id === 'owner' ? '店主' : (stat._id === 'manager' ? '店長' : '店員')}</h3>
+                    <p>數量: ${stat.count}份</p>
+                    <p>平均月營業額: ${stat.avgMonthlyRevenue ? Math.round(stat.avgMonthlyRevenue) : 0}元</p>
+                    <p>平均員工數: ${stat.avgEmployeeCount ? Math.round(stat.avgEmployeeCount) : 0}人</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 獲取所有問卷數據
+        async function fetchSurveys() {
+            try {
+                const response = await fetch('http://localhost:3000/api/surveys');
+                const data = await response.json();
+                if (data.status === 'success') {
+                    displaySurveys(data.data);
+                }
+            } catch (error) {
+                console.error('獲取問卷數據失敗:', error);
+            }
+        }
+
+        // 顯示問卷列表
+        function displaySurveys(surveys) {
+            const tbody = document.getElementById('surveyList');
+            tbody.innerHTML = '';
+
+            surveys.forEach(survey => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${new Date(survey.createdAt).toLocaleString()}</td>
+                    <td>${survey.role === 'owner' ? '店主' : (survey.role === 'manager' ? '店長' : '店員')}</td>
+                    <td>${survey.storeInfo?.storeCount || '-'}</td>
+                    <td>${survey.storeInfo?.employeeCount || '-'}</td>
+                    <td>${survey.storeInfo?.monthlyRevenue || '-'}</td>
+                    <td>
+                        <button onclick='showDetails(${JSON.stringify(survey)})'>查看詳情</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 顯示問卷詳情
+        function showDetails(survey) {
+            const details = `
+                角色: ${survey.role === 'owner' ? '店主' : (survey.role === 'manager' ? '店長' : '店員')}
+
+                店鋪信息：
+                - 店鋪數量：${survey.storeInfo?.storeCount || '-'}
+                - 員工數量：${survey.storeInfo?.employeeCount || '-'}
+                - 月營業額：${survey.storeInfo?.monthlyRevenue || '-'}
+
+                銷售信息：
+                - 日均顧客數：${survey.salesInfo?.averageCustomers || '-'}
+                - 轉化率：${survey.salesInfo?.conversionRate || '-'}%
+                - 投訴類型：${survey.salesInfo?.customerComplaints?.join(', ') || '-'}
+                - 高峰時段：${survey.salesInfo?.peakHours?.join(', ') || '-'}
+
+                培訓需求：
+                - 支持需求：${survey.trainingNeeds?.supportNeeds?.join(', ') || '-'}
+                - 店主需求：${survey.trainingNeeds?.ownerNeeds?.join(', ') || '-'}
+                - 其他需求：${survey.trainingNeeds?.otherNeed || '-'}
+
+                管理信息：
+                - 庫存管理：${survey.management?.inventoryManagement || '-'}
+                - 系統名稱：${survey.management?.systemName || '-'}
+                - 其他管理：${survey.management?.otherManagement || '-'}
+                - 改進重點：${survey.management?.improvementFocus || '-'}
+                - 其他改進：${survey.management?.otherImprovement || '-'}
+
+                建議：${survey.suggestions || '-'}
+            `;
+            alert(details);
+        }
+
+        // 導出CSV文件
+        async function exportToCSV() {
+            try {
+                const response = await fetch('http://localhost:3000/api/surveys');
+                const data = await response.json();
+                if (data.status === 'success') {
+                    const surveys = data.data;
+                    let csv = '提交時間,角色,店鋪數量,員工數量,月營業額,日均顧客數,轉化率,投訴類型,高峰時段,支持需求,店主需求,其他需求,庫存管理,系統名稱,其他管理,改進重點,其他改進,建議\n';
+                    
+                    surveys.forEach(survey => {
+                        csv += `${new Date(survey.createdAt).toLocaleString()},`;
+                        csv += `${survey.role},`;
+                        csv += `${survey.storeInfo?.storeCount || ''},`;
+                        csv += `${survey.storeInfo?.employeeCount || ''},`;
+                        csv += `${survey.storeInfo?.monthlyRevenue || ''},`;
+                        csv += `${survey.salesInfo?.averageCustomers || ''},`;
+                        csv += `${survey.salesInfo?.conversionRate || ''},`;
+                        csv += `"${survey.salesInfo?.customerComplaints?.join(';') || ''}",`;
+                        csv += `"${survey.salesInfo?.peakHours?.join(';') || ''}",`;
+                        csv += `"${survey.trainingNeeds?.supportNeeds?.join(';') || ''}",`;
+                        csv += `"${survey.trainingNeeds?.ownerNeeds?.join(';') || ''}",`;
+                        csv += `"${survey.trainingNeeds?.otherNeed || ''}",`;
+                        csv += `${survey.management?.inventoryManagement || ''},`;
+                        csv += `"${survey.management?.systemName || ''}",`;
+                        csv += `"${survey.management?.otherManagement || ''}",`;
+                        csv += `${survey.management?.improvementFocus || ''},`;
+                        csv += `"${survey.management?.otherImprovement || ''}",`;
+                        csv += `"${survey.suggestions || ''}"\n`;
+                    });
+
+                    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = '問卷調查數據.csv';
+                    link.click();
+                }
+            } catch (error) {
+                console.error('導出數據失敗:', error);
+            }
+        }
+
+        // 頁面加載時獲取數據
+        window.onload = () => {
+            fetchStats();
+            fetchSurveys();
+        };
+    </script>
+</body>
+</html>

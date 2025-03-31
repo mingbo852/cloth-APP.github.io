@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服装搭配需知</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            position: relative;
+            background-color: #ff6b81;
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .content {
+            padding: 1rem;
+            margin-bottom: 60px;
+        }
+
+        .image-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .image-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .image-container {
+            width: 100%;
+            min-height: 200px;
+            max-width: 100%;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 0.5rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.3rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #666;
+        }
+
+        .nav-item.active {
+            color: #ff6b81;
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-item p {
+            font-size: 0.7rem;
+        }
+
+        .comment-section {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .comment-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .comment-input textarea {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+            height: 60px;
+            font-family: inherit;
+        }
+
+        .comment-input button {
+            padding: 0.5rem 1rem;
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+
+        .comment-input button:hover {
+            background-color: #ff5268;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .comment-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+        .comment-text {
+            margin-bottom: 0.3rem;
+            color: #333;
+        }
+
+        .comment-time {
+            font-size: 0.8rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="cloth.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-title">服装搭配需知</div>
+    </div>
+
+    <div class="content">
+        <div class="image-grid">
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1180.png" alt="图片1">
+                </div>
+                <div class="image-caption">图片1</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1181.png" alt="图片2">
+                </div>
+                <div class="image-caption">图片2</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1182.png" alt="图片3">
+                </div>
+                <div class="image-caption">图片3</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1183.png" alt="图片4">
+                </div>
+                <div class="image-caption">图片4</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1184.png" alt="图片5">
+                </div>
+                <div class="image-caption">图片5</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1185.png" alt="图片6">
+                </div>
+                <div class="image-caption">图片6</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1186.png" alt="图片7">
+                </div>
+                <div class="image-caption">图片7</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1187.png" alt="图片8">
+                </div>
+                <div class="image-caption">图片8</div>
+            </div>
+            <div class="image-item">
+                <div class="image-container">
+                    <img src="images/1188.png" alt="图片9">
+                </div>
+                <div class="image-caption">图片9</div>
+            </div>
+        </div>
+        <div class="comment-section">
+            <div class="comment-input">
+                <textarea placeholder="请输入您的留言..."></textarea>
+                <button onclick="submitComment()">发送</button>
+            </div>
+            <div class="comment-list" id="commentList"></div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <i class="fas fa-home"></i>
+            <p>首頁</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-magic"></i>
+            <p>AI定制</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-gift"></i>
+            <p>活動</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-user-circle"></i>
+            <p>我的</p>
+        </div>
+    </div>
+
+    <script>
+        function submitComment() {
+            const textarea = document.querySelector('.comment-input textarea');
+            const commentText = textarea.value.trim();
+            
+            if (commentText) {
+                const commentList = document.getElementById('commentList');
+                const commentItem = document.createElement('div');
+                commentItem.className = 'comment-item';
+                
+                const now = new Date();
+                const timeStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                
+                commentItem.innerHTML = `
+                    <div class="comment-text">${commentText}</div>
+                    <div class="comment-time">${timeStr}</div>
+                `;
+                
+                commentList.insertBefore(commentItem, commentList.firstChild);
+                textarea.value = '';
+            }
+        }
+
+        // 添加回车发送功能
+        document.querySelector('.comment-input textarea').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                submitComment();
+            }
+        });
+    </script>
+</body>
+</html>

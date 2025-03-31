@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>銷售案例欣賞</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            position: relative;
+            background-color: #ff6b81;
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.4rem;
+            padding: 1rem;
+            background: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item {
+            padding: 0.8rem;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item.active {
+            background: #ff6b81;
+            color: white;
+        }
+
+        .menu-item i {
+            font-size: 1.5rem;
+            color: #FF1493;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .menu-item.active i {
+            color: white;
+        }
+
+        .content {
+            padding: 1rem;
+            margin-bottom: 60px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 1rem;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 9/16;
+            display: none;
+        }
+
+        .video-container.active {
+            display: block;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-content {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            max-width: 500px;
+            display: none;
+        }
+
+        .text-content.active {
+            display: block;
+        }
+
+        .text-content h3 {
+            color: #ff6b81;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .text-content p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.3rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #666;
+        }
+
+        .nav-item.active {
+            color: #ff6b81;
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-item p {
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="page-1.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-title">銷售案例欣賞</div>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-item" data-type="case1">
+            <i class="fas fa-star"></i>
+            <p>經典銷售案例</p>
+        </div>
+        <div class="menu-item" data-type="case2">
+            <i class="fas fa-crown"></i>
+            <p>高端客戶案例</p>
+        </div>
+        <div class="menu-item" data-type="case3">
+            <i class="fas fa-users"></i>
+            <p>團購成功案例</p>
+        </div>
+        <div class="menu-item" data-type="case4">
+            <i class="fas fa-gift"></i>
+            <p>節日促銷案例</p>
+        </div>
+        <div class="menu-item" data-type="case5">
+            <i class="fas fa-heart"></i>
+            <p>客戶維護案例</p>
+        </div>
+        <div class="menu-item" data-type="case6">
+            <i class="fas fa-comments"></i>
+            <p>溝通技巧案例</p>
+        </div>
+        <div class="menu-item" data-type="case7">
+            <i class="fas fa-handshake"></i>
+            <p>成交技巧案例</p>
+        </div>
+        <div class="menu-item" data-type="case8">
+            <i class="fas fa-chart-line"></i>
+            <p>業績提升案例</p>
+        </div>
+        <div class="menu-item" data-type="case9">
+            <i class="fas fa-store"></i>
+            <p>店鋪管理案例</p>
+        </div>
+        <div class="menu-item" data-type="case10">
+            <i class="fas fa-tags"></i>
+            <p>促銷活動案例</p>
+        </div>
+        <div class="menu-item" data-type="case11">
+            <i class="fas fa-shopping-bag"></i>
+            <p>商品陳列案例</p>
+        </div>
+        <div class="menu-item" data-type="case12">
+            <i class="fas fa-clock"></i>
+            <p>季節性銷售案例</p>
+        </div>
+        <div class="menu-item" data-type="case13">
+            <i class="fas fa-thumbs-up"></i>
+            <p>客戶好評案例</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="video-container">
+            <video id="mainVideo" controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+        <div class="text-content">
+            <h3 id="contentTitle"></h3>
+            <div id="contentText"></div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <i class="fas fa-home"></i>
+            <p>首頁</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-magic"></i>
+            <p>AI定制</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-gift"></i>
+            <p>活動</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-user-circle"></i>
+            <p>我的</p>
+        </div>
+    </div>
+
+    <script>
+        const menuItems = document.querySelectorAll('.menu-item');
+        const videoContainer = document.querySelector('.video-container');
+        const textContent = document.querySelector('.text-content');
+        const mainVideo = document.getElementById('mainVideo');
+        const contentTitle = document.getElementById('contentTitle');
+        const contentText = document.getElementById('contentText');
+
+        const contentConfig = {
+            'case1': {
+                title: '經典銷售案例',
+                video: 'videos/1181.mp4',
+                contentTitle: '成功銷售技巧展示',
+                text: `<p>這個案例展示了如何通過專業的產品介紹和客戶溝通，成功完成銷售。</p>
+                      <p>關鍵要點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 準確把握客戶需求</li>
+                          <li>• 專業的產品知識</li>
+                          <li>• 有效的溝通技巧</li>
+                          <li>• 合理的價格談判</li>
+                      </ul>`
+            },
+            'case2': {
+                title: '高端客戶案例',
+                video: 'videos/1182.mp4',
+                contentTitle: '高端客戶服務技巧',
+                text: `<p>針對高端客戶的專業服務案例分析。</p>
+                      <p>服務重點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 個性化需求分析</li>
+                          <li>• 高品質產品推薦</li>
+                          <li>• VIP服務體驗</li>
+                          <li>• 後續跟進服務</li>
+                      </ul>`
+            },
+            'case3': {
+                title: '團購成功案例',
+                video: 'videos/1183.mp4',
+                contentTitle: '團購營銷技巧',
+                text: `<p>如何成功組織和管理團購活動。</p>
+                      <p>成功要素：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 團購優惠設計</li>
+                          <li>• 群體營銷策略</li>
+                          <li>• 活動組織管理</li>
+                          <li>• 客戶關係維護</li>
+                      </ul>`
+            },
+            'case4': {
+                title: '節日促銷案例',
+                video: 'videos/1184.mp4',
+                contentTitle: '節日營銷策略',
+                text: `<p>節日促銷活動的成功案例分析。</p>
+                      <p>營銷策略：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 節日氛圍營造</li>
+                          <li>• 促銷方案設計</li>
+                          <li>• 客戶互動活動</li>
+                          <li>• 銷售轉化技巧</li>
+                      </ul>`
+            },
+            'case5': {
+                title: '客戶維護案例',
+                video: 'videos/1185.mp4',
+                contentTitle: '客戶關係維護',
+                text: `<p>如何維護客戶關係並促進二次購買。</p>
+                      <p>維護要點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 定期客戶回訪</li>
+                          <li>• 個性化服務</li>
+                          <li>• 會員權益維護</li>
+                          <li>• 忠誠度建立</li>
+                      </ul>`
+            },
+            'case6': {
+                title: '溝通技巧案例',
+                video: 'videos/1186.mp4',
+                contentTitle: '有效溝通方法',
+                text: `<p>展示如何通過有效溝通提升銷售效果。</p>
+                      <p>溝通技巧：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 傾聽客戶需求</li>
+                          <li>• 情緒共鳴能力</li>
+                          <li>• 專業用語運用</li>
+                          <li>• 異議處理方法</li>
+                      </ul>`
+            },
+            'case7': {
+                title: '成交技巧案例',
+                video: 'videos/1187.mp4',
+                contentTitle: '成交技巧分析',
+                text: `<p>分析成功成交的關鍵因素和技巧。</p>
+                      <p>成交要點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 把握購買信號</li>
+                          <li>• 價值轉化能力</li>
+                          <li>• 成交時機判斷</li>
+                          <li>• 促成交易技巧</li>
+                      </ul>`
+            },
+            'case8': {
+                title: '業績提升案例',
+                video: 'videos/1188.mp4',
+                contentTitle: '業績提升方法',
+                text: `<p>通過案例分析業績提升的方法和策略。</p>
+                      <p>提升策略：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 目標管理方法</li>
+                          <li>• 銷售流程優化</li>
+                          <li>• 客戶資源管理</li>
+                          <li>• 團隊協作技巧</li>
+                      </ul>`
+            },
+            'case9': {
+                title: '店鋪管理案例',
+                video: 'videos/1189.mp4',
+                contentTitle: '店鋪管理技巧',
+                text: `<p>優秀店鋪管理案例分析。</p>
+                      <p>管理要點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 店鋪形象維護</li>
+                          <li>• 人員調配管理</li>
+                          <li>• 庫存控制方法</li>
+                          <li>• 營運效率提升</li>
+                      </ul>`
+            },
+            'case10': {
+                title: '促銷活動案例',
+                video: 'videos/1190.mp4',
+                contentTitle: '促銷活動策劃',
+                text: `<p>成功促銷活動案例解析。</p>
+                      <p>活動要素：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 活動主題設計</li>
+                          <li>• 促銷方案制定</li>
+                          <li>• 宣傳推廣執行</li>
+                          <li>• 效果評估分析</li>
+                      </ul>`
+            },
+            'case11': {
+                title: '商品陳列案例',
+                video: 'videos/1191.mp4',
+                contentTitle: '商品陳列技巧',
+                text: `<p>有效的商品陳列案例分享。</p>
+                      <p>陳列技巧：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 視覺效果設計</li>
+                          <li>• 商品分區擺放</li>
+                          <li>• 重點商品展示</li>
+                          <li>• 季節性調整</li>
+                      </ul>`
+            },
+            'case12': {
+                title: '季節性銷售案例',
+                video: 'videos/1192.mp4',
+                contentTitle: '季節性銷售策略',
+                text: `<p>季節性商品銷售案例分析。</p>
+                      <p>銷售策略：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 季節商品規劃</li>
+                          <li>• 換季促銷方案</li>
+                          <li>• 庫存周轉管理</li>
+                          <li>• 銷售預測技巧</li>
+                      </ul>`
+            },
+            'case13': {
+                title: '客戶好評案例',
+                video: 'videos/1193.mp4',
+                contentTitle: '客戶好評維護',
+                text: `<p>獲得客戶好評的成功案例。</p>
+                      <p>服務要點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 優質服務提供</li>
+                          <li>• 客戶反饋處理</li>
+                          <li>• 售後服務跟進</li>
+                          <li>• 客戶關係維護</li>
+                      </ul>`
+            }
+        };
+
+        // 页面加载完成后自动触发第一个菜单项的点击事件
+        window.addEventListener('load', () => {
+            if (menuItems.length > 0) {
+                menuItems[0].click();
+            }
+        });
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const type = item.getAttribute('data-type');
+                const config = contentConfig[type];
+
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                if (config) {
+                    mainVideo.src = config.video;
+                    contentTitle.textContent = config.contentTitle;
+                    contentText.innerHTML = config.text;
+                    videoContainer.classList.add('active');
+                    textContent.classList.add('active');
+                    mainVideo.load();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

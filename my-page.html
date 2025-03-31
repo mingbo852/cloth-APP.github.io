@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服裝店鋪經營與銷售情況調查問卷</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            position: relative;
+            background-color: #ff6b81;
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .content {
+            padding: 1rem;
+            margin-bottom: 60px;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 1rem;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .text-content {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            max-width: 500px;
+        }
+
+        .text-content h3 {
+            color: #ff6b81;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .text-content p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .survey-form {
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ff6b81;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #ff6b81;
+        }
+
+        .question {
+            margin-bottom: 0.8rem;
+        }
+
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 0.4rem;
+            color: #333;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            padding: 0.3rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.3rem;
+        }
+
+        .sub-option {
+            margin-left: 1rem;
+            display: none;
+        }
+
+        .sub-option.show {
+            display: block;
+        }
+
+        .chain-input {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .chain-input input[type="number"] {
+            width: 80px;
+            padding: 0.3rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .other-input {
+            margin-left: 0.5rem;
+            padding: 0.3rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            width: 150px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff5371;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.3rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #666;
+        }
+
+        .nav-item.active {
+            color: #ff6b81;
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-item p {
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="cloth.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-title" id="pageTitle">服裝店鋪經營與銷售情況調查問卷</div>
+    </div>
+
+    <div class="content">
+        <div class="message-section">
+            <h2>用戶留言</h2>
+            <div id="message-list" class="message-list">
+                <!-- 留言列表將通過JavaScript動態加載 -->
+            </div>
+            <div class="message-form">
+                <textarea id="message-content" placeholder="請輸入您的留言（最多500字）" maxlength="500"></textarea>
+                <button id="submit-message" class="submit-message-btn">發布留言</button>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="images/001.jpeg" alt="服裝店鋪經營與銷售情況調查問卷">
+        </div>
+        <div class="text-content">
+            <h3>问卷调查说明</h3>
+            <div id="contentText">
+                <p>目的：了解店鋪經營難點、銷售問題及需求，優化管理與協作。</p>
+                <p>填寫說明：匿名填寫，數據僅用於研究，請按實際角色作答。</p>
+            </div>
+
+            <form id="surveyForm" class="survey-form">
+                <div class="section-title">一、基本信息</div>
+                
+                <div class="question">
+                    <div class="question-title">1. 您的身份：</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="role" value="staff" onchange="handleRoleChange()"> 店員</label>
+                        <label class="option"><input type="radio" name="role" value="manager" onchange="handleRoleChange()"> 店長</label>
+                        <label class="option"><input type="radio" name="role" value="owner" onchange="handleRoleChange()"> 店主/老闆</label>
+                    </div>
+                </div>
+
+                <div id="ownerInfo" class="question" style="display: none;">
+                    <div class="question-title">2. 店鋪基本信息：</div>
+                    <div class="options">
+                        <div class="sub-question">經營時長：</div>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="business_time" value="1"> 1年以內</label>
+                            <label class="option"><input type="radio" name="business_time" value="2"> 1-3年</label>
+                            <label class="option"><input type="radio" name="business_time" value="3"> 3-5年</label>
+                            <label class="option"><input type="radio" name="business_time" value="4"> 5年以上</label>
+                        </div>
+                        
+                        <div class="sub-question">店鋪規模：</div>
+                        <div class="options">
+                            <label class="option"><input type="radio" name="store_scale" value="single"> 單店</label>
+                            <label class="option">
+                                <input type="radio" name="store_scale" value="chain"> 連鎖店
+                                <input type="number" class="other-input" name="chain_count" placeholder="店鋪數量" min="2">
+                            </label>
+                        </div>
+                        
+                        <div class="sub-question">主營品類：（可多選）</div>
+                        <div class="options">
+                            <label class="option"><input type="checkbox" name="main_category" value="women"> 女裝</label>
+                            <label class="option"><input type="checkbox" name="main_category" value="men"> 男裝</label>
+                            <label class="option"><input type="checkbox" name="main_category" value="children"> 童裝</label>
+                            <label class="option"><input type="checkbox" name="main_category" value="sports"> 運動裝</label>
+                            <label class="option">
+                                <input type="checkbox" name="main_category" value="other"> 其他
+                                <input type="text" class="other-input" name="other_category" placeholder="請說明">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">3. 您在服裝行業的工作時長：</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="work_experience" value="1"> 1年以內</label>
+                        <label class="option"><input type="radio" name="work_experience" value="2"> 1-3年</label>
+                        <label class="option"><input type="radio" name="work_experience" value="3"> 3-5年</label>
+                        <label class="option"><input type="radio" name="work_experience" value="4"> 5年以上</label>
+                    </div>
+                </div>
+
+                <div class="section-title">二、經營與銷售問題</div>
+                
+                <div class="question">
+                    <div class="question-title">4. 您認為當前店鋪面臨的最大困難是？（可多選）</div>
+                    <div class="options">
+                        <label class="option"><input type="checkbox" name="difficulties" value="1"> 客流量不足</label>
+                        <label class="option"><input type="checkbox" name="difficulties" value="2"> 庫存積壓</label>
+                        <label class="option"><input type="checkbox" name="difficulties" value="3"> 租金/人力成本高</label>
+                        <label class="option"><input type="checkbox" name="difficulties" value="4"> 線上競爭壓力</label>
+                        <label class="option"><input type="checkbox" name="difficulties" value="5"> 顧客複購率低</label>
+                        <label class="option"><input type="checkbox" name="difficulties" value="6"> 員工流動性高</label>
+                        <label class="option"><input type="checkbox" name="difficulties" value="7"> 促銷效果差</label>
+                        <label class="option"><input type="checkbox" name="difficulties" value="8"> 產品同質化</label>
+                        <label class="option">
+                            <input type="checkbox" name="difficulties" value="other"> 其他
+                            <input type="text" class="other-input" name="other_difficulty" placeholder="請說明">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">5. 日常銷售中的主要障礙是什麼？（可多選）</div>
+                    <div class="options">
+                        <label class="option"><input type="checkbox" name="sales_obstacles" value="1"> 產品款式吸引力不足</label>
+                        <label class="option"><input type="checkbox" name="sales_obstacles" value="2"> 價格競爭力弱</label>
+                        <label class="option"><input type="checkbox" name="sales_obstacles" value="3"> 店員銷售技巧不足</label>
+                        <label class="option"><input type="checkbox" name="sales_obstacles" value="4"> 缺貨/斷碼問題</label>
+                        <label class="option"><input type="checkbox" name="sales_obstacles" value="5"> 會員留存難</label>
+                        <label class="option"><input type="checkbox" name="sales_obstacles" value="6"> 陳列效果差</label>
+                        <label class="option">
+                            <input type="checkbox" name="sales_obstacles" value="other"> 其他
+                            <input type="text" class="other-input" name="other_obstacle" placeholder="請說明">
+                        </label>
+                    </div>
+                </div>
+
+                <div id="staffSolution" class="question" style="display: none;">
+                    <div class="question-title">6. 遇到銷售難題時，您通常如何解決？</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="staff_solution" value="1"> 請示店長/老闆</label>
+                        <label class="option"><input type="radio" name="staff_solution" value="2"> 自主學習技巧</label>
+                        <label class="option"><input type="radio" name="staff_solution" value="3"> 調整陳列吸引顧客</label>
+                        <label class="option"><input type="radio" name="staff_solution" value="4"> 建議促銷活動</label>
+                        <label class="option">
+                            <input type="radio" name="staff_solution" value="other"> 其他
+                            <input type="text" class="other-input" name="other_solution" placeholder="請說明">
+                        </label>
+                    </div>
+                </div>
+
+                <div id="ownerSolution" class="question" style="display: none;">
+                    <div class="question-title">7. 面對經營壓力，您嘗試過哪些措施？（可多選）</div>
+                    <div class="options">
+                        <label class="option"><input type="checkbox" name="owner_measures" value="1"> 優化會員體系</label>
+                        <label class="option"><input type="checkbox" name="owner_measures" value="2"> 增加線上渠道（直播/社群）</label>
+                        <label class="option"><input type="checkbox" name="owner_measures" value="3"> 調整產品結構</label>
+                        <label class="option"><input type="checkbox" name="owner_measures" value="4"> 引入數據分析工具</label>
+                        <label class="option"><input type="checkbox" name="owner_measures" value="5"> 縮減成本</label>
+                        <label class="option">
+                            <input type="checkbox" name="owner_measures" value="other"> 其他
+                            <input type="text" class="other-input" name="other_measure" placeholder="請說明">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="section-title">三、培訓與支持需求</div>
+
+                <div id="staffTraining" class="question" style="display: none;">
+                    <div class="question-title">8. 您是否接受過系統培訓？</div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="training" value="yes" onchange="handleTrainingChange()"> 是
+                        </label>
+                        <div id="trainingFrequency" class="sub-option">
+                            <div class="options">
+                                <label class="option"><input type="radio" name="training_frequency" value="monthly"> 每月</label>
+                                <label class="option"><input type="radio" name="training_frequency" value="quarterly"> 季度</label>
+                                <label class="option"><input type="radio" name="training_frequency" value="half_year"> 半年</label>
+                                <label class="option"><input type="radio" name="training_frequency" value="irregular"> 不定期</label>
+                            </div>
+                        </div>
+                        <label class="option"><input type="radio" name="training" value="no"> 否</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-title">9. 您最希望獲得哪些支持？（可多選）</div>
+                    <div class="options">
+                        <div class="sub-question">通用需求：</div>
+                        <label class="option"><input type="checkbox" name="support_needs" value="1"> 銷售技巧培訓</label>
+                        <label class="option"><input type="checkbox" name="support_needs" value="2"> 產品知識培訓</label>
+                        <label class="option"><input type="checkbox" name="support_needs" value="3"> 陳列設計指導</label>
+                        
+                        <div id="ownerNeeds" class="sub-question" style="display: none;">
+                            店主專需：
+                            <label class="option"><input type="checkbox" name="owner_needs" value="1"> 供應鏈優化</label>
+                            <label class="option"><input type="checkbox" name="owner_needs" value="2"> 數字化管理工具</label>
+                            <label class="option"><input type="checkbox" name="owner_needs" value="3"> 精準營銷方案</label>
+                        </div>
+                        
+                        <label class="option">
+                            <input type="checkbox" name="support_needs" value="other"> 其他
+                            <input type="text" class="other-input" name="other_need" placeholder="請說明">
+                        </label>
+                    </div>
+                </div>
+
+                <div id="ownerManagement" class="section-title" style="display: none;">四、策略與管理</div>
+
+                <div id="inventoryManagement" class="question" style="display: none;">
+                    <div class="question-title">10. 當前庫存管理方式：</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="inventory_management" value="1"> 手工記錄</label>
+                        <label class="option">
+                            <input type="radio" name="inventory_management" value="2"> 進銷存系統
+                            <input type="text" class="other-input" name="system_name" placeholder="系統名稱">
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="inventory_management" value="other"> 其他
+                            <input type="text" class="other-input" name="other_management" placeholder="請說明">
+                        </label>
+                    </div>
+                </div>
+
+                <div id="salesImprovement" class="question" style="display: none;">
+                    <div class="question-title">11. 您認為提升銷售額最需改進的是？</div>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="improvement_focus" value="1"> 產品設計</label>
+                        <label class="option"><input type="radio" name="improvement_focus" value="2"> 定價策略</label>
+                        <label class="option"><input type="radio" name="improvement_focus" value="3"> 促銷活動</label>
+                        <label class="option"><input type="radio" name="improvement_focus" value="4"> 服務質量</label>
+                        <label class="option"><input type="radio" name="improvement_focus" value="5"> 線上推廣</label>
+                        <label class="option">
+                            <input type="radio" name="improvement_focus" value="other"> 其他
+                            <input type="text" class="other-input" name="other_improvement" placeholder="請說明">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="section-title">五、開放建議</div>
+
+                <div class="question">
+                    <div class="question-title">12. 您對店鋪經營或團隊協作還有哪些建議？</div>
+                    <textarea name="suggestions" placeholder="請輸入您的建議..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">提交問卷</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <i class="fas fa-home"></i>
+            <p>首頁</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-magic"></i>
+            <p>AI定制</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-gift"></i>
+            <p>活動</p>
+        </div>
+        <div class="nav-item active">
+            <i class="fas fa-user-circle"></i>
+            <p>我的</p>
+        </div>
+    </div>
+
+    <script>
+        function handleRoleChange() {
+            const role = document.querySelector('input[name="role"]:checked')?.value;
+            const ownerInfo = document.getElementById('ownerInfo');
+            const staffSolution = document.getElementById('staffSolution');
+            const ownerSolution = document.getElementById('ownerSolution');
+            const staffTraining = document.getElementById('staffTraining');
+            const ownerNeeds = document.getElementById('ownerNeeds');
+            const ownerManagement = document.getElementById('ownerManagement');
+            const inventoryManagement = document.getElementById('inventoryManagement');
+            const salesImprovement = document.getElementById('salesImprovement');
+
+            if (role === 'owner') {
+                ownerInfo.style.display = 'block';
+                staffSolution.style.display = 'none';
+                ownerSolution.style.display = 'block';
+                staffTraining.style.display = 'none';
+                ownerNeeds.style.display = 'block';
+                ownerManagement.style.display = 'block';
+                inventoryManagement.style.display = 'block';
+                salesImprovement.style.display = 'block';
+            } else {
+                ownerInfo.style.display = 'none';
+                staffSolution.style.display = 'block';
+                ownerSolution.style.display = 'none';
+                staffTraining.style.display = 'block';
+                ownerNeeds.style.display = 'none';
+                ownerManagement.style.display = 'none';
+                inventoryManagement.style.display = 'none';
+                salesImprovement.style.display = 'none';
+            }
+        }
+
+        function handleTrainingChange() {
+            const trainingYes = document.querySelector('input[name="training"][value="yes"]');
+            const trainingFrequency = document.getElementById('trainingFrequency');
+            
+            if (trainingYes.checked) {
+                trainingFrequency.classList.add('show');
+            } else {
+                trainingFrequency.classList.remove('show');
+            }
+        }
+
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const role = document.querySelector('input[name="role"]:checked')?.value;
+            let message = '';
+            
+            if (role === 'owner') {
+                message = '店主問卷提交成功！';
+            } else if (role === 'manager') {
+                message = '店長問卷提交成功！';
+            } else {
+                message = '店員問卷提交成功！';
+            }
+            
+            alert(message + '感謝您的參與。');
+        });
+    </script>
+</body>
+</html>

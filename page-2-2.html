@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- 設置文檔編碼和視口 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>男裝銷售話術</title>
+    <!-- 引入Font Awesome圖標庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- 頁面樣式定義 -->
+    <style>
+        /* 全局樣式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 主體樣式設置 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* 系統字體 */
+            background-color: #f5f5f5; /* 背景色 */
+            color: #333; /* 文字顏色 */
+        }
+
+        /* 頁面頭部樣式 */
+        .header {
+            position: relative;
+            background-color: #ff6b81; /* 頭部背景色 */
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 陰影效果 */
+        }
+
+        .back-btn {
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        /* 菜單容器網格布局 */
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4列等寬網格 */
+            gap: 1rem; /* 網格間距 */
+            padding: 1rem;
+            background: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item {
+            padding: 0.8rem;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item.active {
+            background: #ff6b81;
+            color: white;
+        }
+
+        .menu-item i {
+            font-size: 2.2rem;
+            color: #FF1493;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .menu-item.active i {
+            color: white;
+        }
+
+        .content {
+            padding: 1rem;
+            margin-bottom: 60px;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 1rem;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 9/16;
+            display: none;
+        }
+
+        .video-container.active {
+            display: block;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-content {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            max-width: 500px;
+            display: none;
+        }
+
+        .text-content.active {
+            display: block;
+        }
+
+        .text-content h3 {
+            color: #ff6b81;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .text-content p {
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.3rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #666;
+        }
+
+        .nav-item.active {
+            color: #ff6b81;
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-item p {
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="page-2.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-title">男裝銷售話術</div>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-item" data-type="m1">
+            <i class="fas fa-user-tie"></i>
+            <p>西裝銷售話術</p>
+        </div>
+        <div class="menu-item" data-type="m2">
+            <i class="fas fa-tshirt"></i>
+            <p>休閑裝銷售話術</p>
+        </div>
+        <div class="menu-item" data-type="m3">
+            <i class="fas fa-running"></i>
+            <p>開發中</p>
+        </div>
+        <div class="menu-item" data-type="m4">
+            <i class="fas fa-briefcase"></i>
+            <p>開發中</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="video-container">
+            <video id="mainVideo" controls playsinline>
+                <source src="" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+        </div>
+        <div class="text-content">
+            <h3 id="contentTitle"></h3>
+            <div id="contentText"></div>
+        </div>
+        <div class="comment-section">
+            <div class="comment-input">
+                <textarea placeholder="请输入您的留言..."></textarea>
+                <button onclick="submitComment()">发送</button>
+            </div>
+            <div class="comment-list" id="commentList"></div>
+        </div>
+    </div>
+
+   
+
+    <style>
+        .comment-section {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .comment-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .comment-input textarea {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: none;
+            height: 60px;
+            font-family: inherit;
+        }
+
+        .comment-input button {
+            padding: 0.5rem 1rem;
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+
+        .comment-input button:hover {
+            background-color: #ff5268;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .comment-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+        }
+
+        .comment-text {
+            margin-bottom: 0.3rem;
+            color: #333;
+        }
+
+        .comment-time {
+            font-size: 0.8rem;
+            color: #999;
+        }
+    </style>
+    <script>
+        // 视频和内容配置
+        const contentConfig = {
+            'm1': {
+                title: '西裝銷售話術',
+                video: 'videos/211.mov',
+                contentTitle: '西裝銷售話術',
+                text: `<p>西装銷售的核心要點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 強調面料品質和剪裁工藝</li>
+                          <li>• 突出商備場合的適用性</li>
+                          <li>• 介紹不同場合的搭配方案</li>
+                          <li>• 提供專業的量體服務</li>
+                      </ul>`
+            },
+            'm2': {
+                title: '休閑裝銷售話術',
+                video: 'videos/118.mp4',
+                contentTitle: '休閑裝銷售話術',
+                text: `<p>休闲装销售要点：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 强调舒适度和实用性</li>
+                          <li>• 介绍流行元素和搭配</li>
+                          <li>• 突出面料的特点</li>
+                          <li>• 推荐日常穿搭方案</li>
+                      </ul>`
+            },
+            'm3': {
+                title: '运动装销售话术',
+                video: 'videos/213.mp4',
+                contentTitle: '运动装销售技巧',
+                text: `<p>运动装销售要点：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 介绍功能性面料特点</li>
+                          <li>• 突出运动场景应用</li>
+                          <li>• 强调透气和排汗性能</li>
+                          <li>• 推荐运动搭配方案</li>
+                      </ul>`
+            },
+            'm4': {
+                title: '商务装銷售話術',
+                video: 'videos/214.mp4',
+                contentTitle: '商务装銷售技巧',
+                text: `<p>商务装銷售要點：</p>
+                      <ul style="list-style: none; padding-left: 1rem;">
+                          <li>• 强調職場形象塑造</li>
+                          <li>• 介紹商務場合著裝禮儀</li>
+                          <li>• 突出品質與品位</li>
+                          <li>• 推薦商務搭配方案</li>
+                      </ul>`
+            }
+        };
+
+        // 获取所有菜单项
+        const menuItems = document.querySelectorAll('.menu-item');
+        const videoContainer = document.querySelector('.video-container');
+        const textContent = document.querySelector('.text-content');
+        const video = document.getElementById('mainVideo');
+        const contentTitle = document.getElementById('contentTitle');
+        const contentTextDiv = document.getElementById('contentText');
+
+        // 为每个菜单项添加点击事件
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const type = item.getAttribute('data-type');
+                const content = contentConfig[type];
+
+                // 更新菜单项状态
+                menuItems.forEach(mi => mi.classList.remove('active'));
+                item.classList.add('active');
+
+                // 更新视频源
+                video.src = content.video;
+                video.load();
+                video.play();
+
+                // 更新文字内容
+                contentTitle.textContent = content.contentTitle;
+                contentTextDiv.innerHTML = content.text;
+
+                // 显示视频和文字容器
+                videoContainer.classList.add('active');
+                textContent.classList.add('active');
+            });
+        });
+
+        // 默认点击第一个菜单项
+        menuItems[0].click();
+
+        function submitComment() {
+            const textarea = document.querySelector('.comment-input textarea');
+            const commentText = textarea.value.trim();
+            
+            if (commentText) {
+                const commentList = document.getElementById('commentList');
+                const commentItem = document.createElement('div');
+                commentItem.className = 'comment-item';
+                
+                const now = new Date();
+                const timeStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                
+                commentItem.innerHTML = `
+                    <div class="comment-text">${commentText}</div>
+                    <div class="comment-time">${timeStr}</div>
+                `;
+                
+                commentList.insertBefore(commentItem, commentList.firstChild);
+                textarea.value = '';
+            }
+        }
+
+        // 添加回车发送功能
+        document.querySelector('.comment-input textarea').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                submitComment();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店鋪經營管理</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            position: relative;
+            background-color: #ff6b81;
+            color: white;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid-item {
+            background-color: transparent;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .grid-item:active {
+            transform: scale(0.98);
+        }
+
+        .grid-item i {
+            font-size: 2.2rem;
+            color: #ff6b81;
+            margin-right: 1rem;
+            min-width: 2rem;
+            text-align: center;
+        }
+
+        .grid-item p {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            color: #666;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.3rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #666;
+        }
+
+        .nav-item.active {
+            color: #ff6b81;
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-item p {
+            font-size: 0.7rem;
+        }
+
+        .ai-bubble {
+            position: relative;
+            background-color: #ffd700;
+            padding: 0.5rem;
+            border-radius: 15px;
+            margin-top: 0.5rem;
+        }
+
+        .ai-bubble::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 10px 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent #ffd700 transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="cloth.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="header-title">店鋪經營管理</div>
+    </div>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <i class="fas fa-tshirt"></i>
+            <p>管理者如何高效激勵一線的售貨員</p>
+        </div>
+        <div class="grid-item">
+            <i class="fas fa-hat-cowboy"></i>
+            <p>管理者如何建立威信，又能和員工相處和睦？</p>
+        </div>
+        <div class="grid-item">
+            <i class="fas fa-shoe-prints"></i>
+            <p>售貨員常犯的三個錯誤</p>
+        </div>
+        <div class="grid-item">
+            <i class="fas fa-glasses"></i>
+            <p>售貨員努力接待客人，但為何銷售業績不好？</p>
+        </div>
+        <div class="grid-item">
+            <i class="fas fa-socks"></i>
+            <p>服裝店主必備八大技能</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video1.html'">
+            <i class="fas fa-vest"></i>
+            <p>經營管理-6</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video2.html'">
+            <i class="fas fa-mitten"></i>
+            <p>經營管理-7</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video1.html'">
+            <i class="fas fa-ring"></i>
+            <p>經營管理-8</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video2.html'">
+            <i class="fas fa-gem"></i>
+            <p>經營管理-9</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video1.html'">
+            <i class="fas fa-crown"></i>
+            <p>經營管理-10</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video2.html'">
+            <i class="fas fa-heart"></i>
+            <p>經營管理-11</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video1.html'">
+            <i class="fas fa-umbrella"></i>
+            <p>經營管理-12</p>
+        </div>
+        <div class="grid-item" onclick="window.location.href='p10-video2.html'">
+            <i class="fas fa-star"></i>
+            <p>經營管理-13</p>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <i class="fas fa-home"></i>
+            <p>首頁</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-magic"></i>
+            <p>AI定制</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-gift"></i>
+            <p>活動</p>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-user-circle"></i>
+            <p>我的</p>
+        </div>
+    </div>
+
+    <script>
+        // 添加点击事件处理
+        document.querySelectorAll('.grid-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                const text = this.querySelector('p').textContent;
+                let type = '';
+                switch(text) {
+                    case '管理者如何高效激勵一線的售貨員':
+                        type = 'A11';
+                        window.location.href = `p10-video1.html?type=${type}`;
+                        break;
+                    case '管理者如何建立威信，又能和員工相處和睦？':
+                        type = 'A22';
+                        window.location.href = `p10-video1.html?type=${type}`;
+                        break;
+                    case '售貨員常犯的三個錯誤':
+                        type = 'A33';
+                        window.location.href = `p10-video1.html?type=${type}`;
+                        break;
+                    case '售貨員努力接待客人，但為何銷售業績不好？':
+                        type = 'A44';
+                        window.location.href = `p10-video1.html?type=${type}`;
+                        break;
+                    case '服裝店主必備八大技能':
+                        type = 'm5';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-6':
+                        type = 'm6';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-7':
+                        type = 'm7';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-8':
+                        type = 'm8';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-9':
+                        type = 'm9';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-10':
+                        type = 'm10';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-11':
+                        type = 'm11';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-12':
+                        type = 'm12';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    case '經營管理-13':
+                        type = 'm13';
+                        window.location.href = `p10-video2.html?type=${type}`;
+                        break;
+                    default:
+                        alert('功能开发中...');
+                        break;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

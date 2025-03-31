@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- 設置文檔編碼和視口 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服裝店鋪銷售知識</title>
+    <!-- 引入Font Awesome圖標庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- 頁面樣式定義 -->    
+    <style>
+        /* 全局樣式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* HTML和Body基礎設置 */
+        html, body {
+            overflow-x: hidden; /* 隱藏水平滾動條 */
+            overflow-y: auto;   /* 允許垂直滾動 */
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 主體樣式設置 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* 系統字體 */
+            background-color: #f5f5f5; /* 背景色 */
+            color: #333; /* 文字顏色 */
+        }
+
+        /* 頁面頭部樣式 */
+        .header {
+            position: relative;
+            background-color: transparent;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* 文字陰影效果 */
+        }
+
+        .header-title {
+            z-index: 2;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            color: #66b3ff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            font-size: 2.1rem;
+        }
+
+
+
+        .header::before {
+            display: none;
+        }
+
+        .swiper-container {
+            margin-bottom: 1.5rem;
+        }
+
+        /* 網格容器樣式 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5列等寬網格 */
+            gap: 0.4rem; /* 網格間距 */
+            padding: 0.5rem;
+            margin-bottom: 100px; /* 底部留白，避免被底部導航欄遮擋 */
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .grid-item {
+            background-color: transparent;
+            border-radius: 0;
+            padding: 0.3rem;
+            text-align: center;
+            box-shadow: none;
+        }
+
+        .grid-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 0.3rem;
+            border-radius: 10px;
+        }
+        .grid-item p {
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.3rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #666;
+        }
+
+        .nav-item i {
+            color: #FF1493;
+        }
+
+        .nav-item.active {
+            color: #FF1493;
+        }
+
+        .nav-item img {
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-item p {
+            font-size: 0.7rem;
+        }
+
+        /* 底部導航欄樣式 */
+        .bottom-nav {
+            position: fixed; /* 固定在底部 */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around; /* 均勻分布導航項 */
+            padding: 0.5rem;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* 上方陰影 */
+            z-index: 999; /* 確保導航欄在最上層 */
+        }
+
+        .nav-item {
+            text-align: center;
+            color: #666;
+        }
+
+        .nav-item i {
+            color: #FF1493;
+        }
+
+        .nav-item.active {
+            color: #FF1493;
+        }
+
+        .nav-item img {
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+            margin-bottom: 0.1rem;
+        }
+
+        .nav-item p {
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="background-image: url('images/000.jpeg');">
+        <div class="header-title">服裝店鋪銷售必備知識</div>
+    </div>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" onclick="window.location.href='ai-model-video.html'">
+                <video class="preview-video" autoplay loop muted playsinline>
+                    <source src="videos/a112.mov" type="video/mp4">
+                </video>
+                <div class="video-text">AI 模特换裝</div>
+            </div>
+            <div class="swiper-slide" onclick="window.location.href='ai-model-image1.html'">
+                <img src="images/aa12.jpeg" alt="AI 模特展示1">
+                <div class="video-text">快速展示服飾</div>
+            </div>
+            <div class="swiper-slide" onclick="window.location.href='ai-model-image2.html'">
+                <img src="images/aa11.jpeg" alt="AI 模特展示2">
+                <div class="video-text">提升顧客購買率</div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src="images/A11.jpeg" alt="銷售知識">
+            <p>銷售知識</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A12.jpeg" alt="各類服飾的銷售話術">
+            <p>各類服飾的銷售話術</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A13.jpeg" alt="店鋪常見銷售問題及話術">
+            <p>店鋪常見銷售問題及話術</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A14.jpeg" alt="服裝搭配需知">
+            <p>服裝搭配需知</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A15.jpeg" alt="不同身形搭配技巧">
+            <p>不同身形搭配技巧</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A16.jpeg" alt="不同顏色搭配">
+            <p>不同顏色搭配</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A17.png" alt="服裝面料介紹">
+            <p>服裝面料介紹</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A18.jpeg" alt="服裝洗滌注意事項">
+            <p>服裝洗滌注意事項</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A19.jpeg" alt="服裝流行趨勢">
+            <p>服裝流行趨勢</p>
+        </div>
+        <div class="grid-item">
+            <img src="images/A20.jpeg" alt="店鋪經營管理">
+            <p>店鋪經營管理</p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+
+    <style>
+        .swiper-container {
+            margin: 1rem;
+            margin-bottom: 30px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 200px;
+            z-index: 1;
+        }
+
+        .swiper-slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .preview-video, .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: top center;
+        }
+
+        .video-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+            z-index: 1;
+        }
+
+        .swiper-pagination {
+            bottom: 5px !important;
+        }
+
+        .swiper-pagination-bullet {
+            background: #fff;
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #66b3ff;
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.6; transform: scale(1); }
+        }
+    </style>
+
+    <div class="bottom-nav">
+        <a href="cloth.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <p>首頁</p>
+        </a>
+        <a href="ai-model-custom.html" class="nav-item">
+            <i class="fas fa-magic"></i>
+            <p>AI定制</p>
+        </a>
+        <a href="activity.html" class="nav-item">
+            <i class="fas fa-gift"></i>
+            <p>活動</p>
+        </a>
+        <a href="my-page.html" class="nav-item">
+            <i class="fas fa-user-circle"></i>
+            <p>我的</p>
+        </a>
+    </div>
+
+    <script>
+        // 添加点击事件处理
+        // 網格項點擊事件處理
+        document.querySelectorAll('.grid-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.querySelector('p').textContent;
+                // 根據點擊項的文本內容跳轉到相應頁面
+                if (text === '銷售知識') {
+                    window.location.href = 'page-1.html';
+                } else if (text === '各類服飾的銷售話術') {
+                    window.location.href = 'page-2.html';
+                } else if (text === '店鋪常見銷售問題及話術') {
+                    window.location.href = 'page-3.html';
+                } else if (text === '服裝搭配需知') {
+                    window.location.href = 'page-4.html';
+                } else if (text === '不同身形搭配技巧') {
+                    window.location.href = 'page-5.html';
+                } else if (text === '不同顏色搭配') {
+                    window.location.href = 'page-6.html';    
+                } else if (text === '服裝面料介紹') {
+                    window.location.href = 'page-7.html'; 
+                } else if (text === '服裝洗滌注意事項') {
+                    window.location.href = 'page-8.html'; 
+                } else if (text === '服裝流行趨勢') {
+                    window.location.href = 'page-9.html'; 
+                } else if (text === '店鋪經營管理') {
+                    window.location.href = 'page-10.html'; 
+                } else {
+                    alert('功能开发中...');
+                }
+            });
+        });
+
+        // 底部導航欄點擊事件處理
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // 移除其他導航項的active類
+                document.querySelectorAll('.nav-item').forEach(navItem => {
+                    navItem.classList.remove('active');
+                });
+                // 為當前點擊的導航項添加active類
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
